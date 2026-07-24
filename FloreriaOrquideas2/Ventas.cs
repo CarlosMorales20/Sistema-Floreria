@@ -28,7 +28,7 @@ namespace FloreriaOrquideas2
             SqlConnection cn = Conexion.obtenerConexion();
             cn.Open();
 
-            SqlCommand cmd = new SqlCommand("SELECT nombre FROM Flores", cn);
+            SqlCommand cmd = new SqlCommand("SELECT DISTINCT nombre FROM Flores ORDER BY nombre", cn);
 
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -69,7 +69,9 @@ namespace FloreriaOrquideas2
             cn.Open();
 
             SqlCommand cmd = new SqlCommand(
-            "SELECT stock FROM Flores WHERE nombre=@nombre", cn);
+            @"SELECT ISNULL(SUM(stock),0)
+            FROM Flores
+            WHERE nombre=@nombre", cn);
 
             cmd.Parameters.AddWithValue("@nombre", cmbFlor.Text);
 
@@ -262,83 +264,114 @@ namespace FloreriaOrquideas2
                     decimal subtotal = Convert.ToDecimal(fila.Cells[3].Value);
 
                     // ==========================
-                    // OBTENER ID FLOR
+                    // DESCONTAR INVENTARIO FIFO
                     // ==========================
 
-                    string consultaFlor =
-                    "SELECT idFlor FROM Flores WHERE nombre=@nombre";
+                    // Verificar stock total
+                    SqlCommand cmdVerificar = new SqlCommand(
+                    @"SELECT ISNULL(SUM(stock),0)
+FROM Flores
+WHERE nombre=@nombre", cn, trans);
 
-                    SqlCommand cmdFlor =
-                    new SqlCommand(consultaFlor, cn, trans);
+                    cmdVerificar.Parameters.AddWithValue("@nombre", nombreFlor);
 
-                    cmdFlor.Parameters.AddWithValue("@nombre", nombreFlor);
+                    int stockTotal = Convert.ToInt32(cmdVerificar.ExecuteScalar());
 
-                    int idFlor = Convert.ToInt32(cmdFlor.ExecuteScalar());
+                    if (cantidad > stockTotal)
+                    {
+                        throw new Exception("No hay suficiente stock para la flor: " + nombreFlor);
+                    }
 
-                    // ==========================
-                    // INSERTAR RAMO
-                    // ==========================
+                    // Obtener lotes ordenados por fecha
+                    SqlCommand cmdLotes = new SqlCommand(
+                    @"SELECT idFlor, stock
+FROM Flores
+WHERE nombre=@nombre
+AND stock>0
+ORDER BY fechaIngreso ASC", cn, trans);
 
-                    string insertarRamo = @"
-            INSERT INTO Ramos
-            (
-                idCliente,
-                idFlor,
-                fechaPedido,
-                fechaEntrega,
-                cantidad,
-                precioUnitario,
-                subtotal,
-                descuento,
-                total,
-                especificaciones
-            )
-            VALUES
-            (
-                @idCliente,
-                @idFlor,
-                @fechaPedido,
-                @fechaEntrega,
-                @cantidad,
-                @precio,
-                @subtotal,
-                @descuento,
-                @total,
-                @especificaciones
-            )";
+                    cmdLotes.Parameters.AddWithValue("@nombre", nombreFlor);
 
-                    SqlCommand cmdRamo =
-                    new SqlCommand(insertarRamo, cn, trans);
+                    SqlDataReader dr = cmdLotes.ExecuteReader();
 
-                    cmdRamo.Parameters.AddWithValue("@idCliente", idCliente);
-                    cmdRamo.Parameters.AddWithValue("@idFlor", idFlor);
-                    cmdRamo.Parameters.AddWithValue("@fechaPedido", dtpPedido.Value.Date);
-                    cmdRamo.Parameters.AddWithValue("@fechaEntrega", dtpEntrega.Value.Date);
-                    cmdRamo.Parameters.AddWithValue("@cantidad", cantidad);
-                    cmdRamo.Parameters.AddWithValue("@precio", precio);
-                    cmdRamo.Parameters.AddWithValue("@subtotal", subtotal);
-                    cmdRamo.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtboxDescuento.Text));
-                    cmdRamo.Parameters.AddWithValue("@total", Convert.ToDecimal(lblTotal.Text));
-                    cmdRamo.Parameters.AddWithValue("@especificaciones", txtEspecificaciones.Text);
+                    List<(int idFlor, int stock)> lotes = new List<(int, int)>();
 
-                    cmdRamo.ExecuteNonQuery();
+                    while (dr.Read())
+                    {
+                        lotes.Add((
+                            Convert.ToInt32(dr["idFlor"]),
+                            Convert.ToInt32(dr["stock"])
+                        ));
+                    }
 
-                    // ==========================
-                    // DESCONTAR INVENTARIO
-                    // ==========================
+                    dr.Close();
 
-                    string actualizarStock = @"
-            UPDATE Flores
-            SET stock = stock - @cantidad
-            WHERE idFlor=@idFlor";
+                    int restante = cantidad;
 
-                    SqlCommand cmdStock =
-                    new SqlCommand(actualizarStock, cn, trans);
+                    foreach (var lote in lotes)
+                    {
+                        if (restante == 0)
+                            break;
 
-                    cmdStock.Parameters.AddWithValue("@cantidad", cantidad);
-                    cmdStock.Parameters.AddWithValue("@idFlor", idFlor);
+                        int descontar = Math.Min(restante, lote.stock);
 
-                    cmdStock.ExecuteNonQuery();
+                        // Registrar el ramo usando el lote correspondiente
+                        string insertarRamo = @"
+    INSERT INTO Ramos
+    (
+        idCliente,
+        idFlor,
+        fechaPedido,
+        fechaEntrega,
+        cantidad,
+        precioUnitario,
+        subtotal,
+        descuento,
+        total,
+        especificaciones
+    )
+    VALUES
+    (
+        @idCliente,
+        @idFlor,
+        @fechaPedido,
+        @fechaEntrega,
+        @cantidad,
+        @precio,
+        @subtotal,
+        @descuento,
+        @total,
+        @especificaciones
+    )";
+
+                        SqlCommand cmdRamo = new SqlCommand(insertarRamo, cn, trans);
+
+                        cmdRamo.Parameters.AddWithValue("@idCliente", idCliente);
+                        cmdRamo.Parameters.AddWithValue("@idFlor", lote.idFlor);
+                        cmdRamo.Parameters.AddWithValue("@fechaPedido", dtpPedido.Value.Date);
+                        cmdRamo.Parameters.AddWithValue("@fechaEntrega", dtpEntrega.Value.Date);
+                        cmdRamo.Parameters.AddWithValue("@cantidad", descontar);
+                        cmdRamo.Parameters.AddWithValue("@precio", precio);
+                        cmdRamo.Parameters.AddWithValue("@subtotal", descontar * precio);
+                        cmdRamo.Parameters.AddWithValue("@descuento", Convert.ToDecimal(txtboxDescuento.Text));
+                        cmdRamo.Parameters.AddWithValue("@total", Convert.ToDecimal(lblTotal.Text));
+                        cmdRamo.Parameters.AddWithValue("@especificaciones", txtEspecificaciones.Text);
+
+                        cmdRamo.ExecuteNonQuery();
+
+                        // Descontar stock del lote
+                        SqlCommand cmdActualizar = new SqlCommand(
+                        @"UPDATE Flores
+      SET stock = stock - @cantidad
+      WHERE idFlor=@idFlor", cn, trans);
+
+                        cmdActualizar.Parameters.AddWithValue("@cantidad", descontar);
+                        cmdActualizar.Parameters.AddWithValue("@idFlor", lote.idFlor);
+
+                        cmdActualizar.ExecuteNonQuery();
+
+                        restante -= descontar;
+                    }
                 }
 
                 trans.Commit();
@@ -406,6 +439,11 @@ namespace FloreriaOrquideas2
         private void btnNuevaVenta_Click(object sender, EventArgs e)
         {
             LimpiarVenta();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

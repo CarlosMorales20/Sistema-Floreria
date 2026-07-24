@@ -45,7 +45,9 @@ namespace FloreriaOrquideas2
 
         private void button5_Click(object sender, EventArgs e)
         {
-           
+            Reportes reportes = new Reportes();
+            reportes.Show();
+            this.Hide();
         }
 
         private void button4_Click(object sender, EventArgs e)
