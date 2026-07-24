@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Floreria
+namespace FloreriaOrquideas2
 {
     public partial class MenuPrincipal : Form
     {
@@ -19,9 +19,7 @@ namespace Floreria
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Ventas ven = new Ventas();
-            ven.Show();
-            this.Hide();
+            
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
@@ -45,16 +43,12 @@ namespace Floreria
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Reportes rep = new Reportes();
-            rep.Show();
-            this.Hide();
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Inventario Inv = new Inventario();
-            Inv.Show();
-            this.Hide();
+           
         }
     }
 }

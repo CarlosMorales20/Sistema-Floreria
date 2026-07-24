@@ -1,4 +1,4 @@
-﻿namespace Floreria
+﻿namespace FloreriaOrquideas2
 {
     partial class Form1
     {
