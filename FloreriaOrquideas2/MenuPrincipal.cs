@@ -19,7 +19,9 @@ namespace FloreriaOrquideas2
 
         private void button3_Click(object sender, EventArgs e)
         {
-            
+            Ventas ven = new Ventas();
+            ven.Show();
+            this.Hide();
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
