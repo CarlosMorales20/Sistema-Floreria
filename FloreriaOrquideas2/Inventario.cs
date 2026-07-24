@@ -13,6 +13,9 @@ namespace FloreriaOrquideas2
 {
     public partial class Inventario : Form
     {
+        // Variable global para guardar la flor seleccionada
+        string florSeleccionada = "";
+
         public Inventario()
         {
             InitializeComponent();
@@ -131,5 +134,36 @@ namespace FloreriaOrquideas2
             cn.Close();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (florSeleccionada == "")
+            {
+                MessageBox.Show("Seleccione una flor.");
+                return;
+            }
+
+            Mermas frm = new Mermas();
+            frm.NombreFlor = florSeleccionada;
+            frm.ShowDialog();
+
+            CargarInventario();
+        }
+
+        private void dgvInventario_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                dgvInventario.Rows[e.RowIndex].Selected = true;
+
+                florSeleccionada = dgvInventario.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            MenuPrincipal menu = new MenuPrincipal();   
+            menu.Show();
+            this.Hide();
+        }
     }
 }
