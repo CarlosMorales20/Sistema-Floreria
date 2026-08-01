@@ -25,7 +25,7 @@ namespace FloreriaOrquideas2
         {
             cmbFlor.Items.Clear();
 
-            SqlConnection cn = Conexion.obtenerConexion(); 
+            SqlConnection cn = Conexion.obtenerConexion();
             cn.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT DISTINCT nombre FROM Flores ORDER BY nombre", cn);
@@ -35,6 +35,27 @@ namespace FloreriaOrquideas2
             while (dr.Read())
             {
                 cmbFlor.Items.Add(dr["nombre"].ToString());
+            }
+
+            dr.Close();
+            cn.Close();
+        }
+
+        private void CargarClientes()
+        {
+            cmbCliente.Items.Clear();
+
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+
+            SqlCommand cmd = new SqlCommand(
+            "SELECT nombre FROM Clientes ORDER BY nombre", cn);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                cmbCliente.Items.Add(dr["nombre"].ToString());
             }
 
             dr.Close();
@@ -126,6 +147,7 @@ namespace FloreriaOrquideas2
         private void Ventas_Load(object sender, EventArgs e)
         {
             CargarFlores();
+            CargarClientes();
         }
 
         private void cmbFlor_SelectedIndexChanged(object sender, EventArgs e)
@@ -217,12 +239,11 @@ namespace FloreriaOrquideas2
                 // BUSCAR CLIENTE
                 // ==========================
 
-                string buscarCliente =
-                "SELECT idCliente FROM Clientes WHERE telefono=@telefono";
+                string buscarCliente ="SELECT idCliente FROM Clientes WHERE nombre=@nombre";
 
                 SqlCommand cmdBuscar = new SqlCommand(buscarCliente, cn, trans);
 
-                cmdBuscar.Parameters.AddWithValue("@telefono", txtTelefono.Text);
+                cmdBuscar.Parameters.AddWithValue("@nombre", txtNombre.Text);
 
                 object resultado = cmdBuscar.ExecuteScalar();
 
@@ -446,6 +467,34 @@ ORDER BY fechaIngreso ASC", cn, trans);
             MenuPrincipal menu = new MenuPrincipal();
             menu.Show();
             this.Hide();
+        }
+
+        private void cmbCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+
+            cn.Open();
+
+            string query = @"SELECT nombre,telefono,direccion
+            FROM Clientes
+            WHERE nombre=@nombre";
+
+            SqlCommand cmd = new SqlCommand(query, cn);
+
+            cmd.Parameters.AddWithValue("@nombre", cmbCliente.Text);
+
+            SqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.Read())
+            {
+                txtNombre.Text = dr["nombre"].ToString();
+                txtTelefono.Text = dr["telefono"].ToString();
+                txtDireccion.Text = dr["direccion"].ToString();
+            }
+
+            dr.Close();
+
+            cn.Close();
         }
     }
 }

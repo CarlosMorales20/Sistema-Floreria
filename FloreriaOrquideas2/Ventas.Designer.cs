@@ -37,13 +37,13 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             DatosCliente = new GroupBox();
+            cmbCliente = new ComboBox();
             dtpEntrega = new DateTimePicker();
             dtpPedido = new DateTimePicker();
             label7 = new Label();
             label6 = new Label();
             txtDireccion = new TextBox();
             txtTelefono = new TextBox();
-            txtNombre = new TextBox();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
@@ -75,6 +75,7 @@
             label15 = new Label();
             label14 = new Label();
             label13 = new Label();
+            txtNombre = new TextBox();
             panelSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             DatosCliente.SuspendLayout();
@@ -174,13 +175,14 @@
             // 
             // DatosCliente
             // 
+            DatosCliente.Controls.Add(txtNombre);
+            DatosCliente.Controls.Add(cmbCliente);
             DatosCliente.Controls.Add(dtpEntrega);
             DatosCliente.Controls.Add(dtpPedido);
             DatosCliente.Controls.Add(label7);
             DatosCliente.Controls.Add(label6);
             DatosCliente.Controls.Add(txtDireccion);
             DatosCliente.Controls.Add(txtTelefono);
-            DatosCliente.Controls.Add(txtNombre);
             DatosCliente.Controls.Add(label5);
             DatosCliente.Controls.Add(label4);
             DatosCliente.Controls.Add(label3);
@@ -191,6 +193,15 @@
             DatosCliente.TabIndex = 1;
             DatosCliente.TabStop = false;
             DatosCliente.Text = "Datos del Cliente";
+            // 
+            // cmbCliente
+            // 
+            cmbCliente.FormattingEnabled = true;
+            cmbCliente.Location = new Point(259, 126);
+            cmbCliente.Name = "cmbCliente";
+            cmbCliente.Size = new Size(107, 25);
+            cmbCliente.TabIndex = 10;
+            cmbCliente.SelectedIndexChanged += cmbCliente_SelectedIndexChanged;
             // 
             // dtpEntrega
             // 
@@ -236,7 +247,7 @@
             // 
             txtDireccion.Location = new Point(66, 123);
             txtDireccion.Name = "txtDireccion";
-            txtDireccion.Size = new Size(298, 25);
+            txtDireccion.Size = new Size(181, 25);
             txtDireccion.TabIndex = 5;
             // 
             // txtTelefono
@@ -245,13 +256,6 @@
             txtTelefono.Name = "txtTelefono";
             txtTelefono.Size = new Size(100, 25);
             txtTelefono.TabIndex = 4;
-            // 
-            // txtNombre
-            // 
-            txtNombre.Location = new Point(66, 28);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(100, 25);
-            txtNombre.TabIndex = 3;
             // 
             // label5
             // 
@@ -544,6 +548,13 @@
             label13.TabIndex = 0;
             label13.Text = "Subtotal:";
             // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(66, 28);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(100, 25);
+            txtNombre.TabIndex = 11;
+            // 
             // Ventas
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -589,7 +600,6 @@
         private GroupBox DatosCliente;
         private TextBox txtDireccion;
         private TextBox txtTelefono;
-        private TextBox txtNombre;
         private Label label5;
         private Label label4;
         private Label label3;
@@ -628,5 +638,7 @@
         private Button btnGuardarVenta;
         private Button btnNuevaVenta;
         private Button btnCancelar;
+        private ComboBox cmbCliente;
+        private TextBox txtNombre;
     }
 }

@@ -20,7 +20,7 @@ namespace FloreriaOrquideas2
             SqlConnection cn = Conexion.obtenerConexion(); // Abrir conexión con la base de datos
             cn.Open();
 
-            string query = "SELECT * FROM Flores"; // Consulta para obtener todos los registros
+            string query = "SELECT * FROM Flores WHERE visible = 1;"; // Consulta para obtener todos los registros
 
             SqlCommand cmd = new SqlCommand(query, cn);
 
@@ -98,37 +98,8 @@ namespace FloreriaOrquideas2
             cmbUnidad.SelectedIndex = -1;
         }
 
-        private void MostrarProductos()
-        {
-            dgvProductos.Rows.Clear();
 
-            SqlConnection cn = Conexion.obtenerConexion();
-            cn.Open();
-
-            string query = "SELECT * FROM Flores";
-
-            SqlCommand cmd = new SqlCommand(query, cn);
-
-            SqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
-            {
-                dgvProductos.Rows.Add(
-                    dr["idProducto"],
-                    dr["nombre"],
-                    dr["categoria"],
-                    dr["precio"],
-                    dr["stock"],
-                    dr["stockMinimo"],
-                    dr["unidad"]
-                );
-            }
-
-            dr.Close();
-            cn.Close();
-        }
-
-        public class Venta
+        public class Venta // Clase para representar una venta
         {
             public int IdVenta { get; set; }
             public string Cliente { get; set; }
@@ -136,7 +107,7 @@ namespace FloreriaOrquideas2
             public double Total { get; set; }
         }
 
-        public class Producto
+        public class Producto // Clase para representar un producto
         {
             public int Id { get; set; }
             public string Nombre { get; set; }
@@ -147,7 +118,7 @@ namespace FloreriaOrquideas2
             public string Unidad { get; set; }
         }
 
-        private bool Validar()
+        private bool Validar() // Validar los campos del formulario antes de guardar los datos
         {
             if (txtNombre.Text == "")
             {
@@ -194,6 +165,8 @@ namespace FloreriaOrquideas2
             return true;
         }
 
+
+        // Guardar los datos del producto en la base de datos
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (!Validar()) // Validar los campos antes de guardar
@@ -243,6 +216,8 @@ namespace FloreriaOrquideas2
 
         }
 
+
+        // Llenar los campos del formulario con los datos del producto seleccionado en el DataGridView
         private void dgvProductos_CellContentClick(object sender, DataGridViewCellEventArgs e) 
         {
             if (e.RowIndex >= 0) // Verificar que se haya hecho clic en una fila válida
@@ -261,42 +236,82 @@ namespace FloreriaOrquideas2
             }
         }
 
+        // Eliminar un producto de la base de datos
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
             try
             {
                 SqlConnection cn = Conexion.obtenerConexion(); // Crear la conexión con la base de datos
-                cn.Open(); // Abrir la conexión con la base de datos
+                cn.Open();// Abrir la conexión con la base de datos
 
-                string query = "DELETE FROM Flores WHERE idFlor=@id"; // Consulta para eliminar un producto de la tabla Flores
+                int idFlor = Convert.ToInt32(txtID.Text);
 
-                SqlCommand cmd = new SqlCommand(query, cn); // Crear el comando SQL para eliminar un producto
-                cmd.Parameters.AddWithValue("@id", Convert.ToInt32(txtID.Text)); // Agregar el parámetro @id con el valor del ID del producto a eliminar
+                // Verificar si tiene movimientos
+                SqlCommand cmdMovimientos = new SqlCommand(@"SELECT
+                (SELECT COUNT(*) FROM Ramos WHERE idFlor=@id) +
+                (SELECT COUNT(*) FROM Mermas WHERE idFlor=@id)", cn);
 
-                int filas = cmd.ExecuteNonQuery(); // Ejecutar la consulta SQL para eliminar un producto
+                cmdMovimientos.Parameters.AddWithValue("@id", idFlor); // Agregar el parámetro @id con el valor del ID del producto a eliminar
 
-                cn.Close(); // Cerrar la conexión con la base de datos
+                int movimientos = Convert.ToInt32(cmdMovimientos.ExecuteScalar());// Ejecutar la consulta SQL para obtener el número de movimientos del producto
 
-                MessageBox.Show("Filas eliminadas: " + filas);
+                // Obtener stock
+                SqlCommand cmdStock = new SqlCommand("SELECT stock FROM Flores WHERE idFlor=@id", cn);
 
-                CargarProductos(); // Recargar los productos en el DataGridView después de eliminar un producto
+                cmdStock.Parameters.AddWithValue("@id", idFlor); // Agregar el parámetro @id con el valor del ID del producto a eliminar
+
+                int stock = Convert.ToInt32(cmdStock.ExecuteScalar()); // Ejecutar la consulta SQL para obtener el stock del producto
+
+                if (movimientos == 0) // Si no tiene movimientos, eliminar definitivamente
+                {
+                    // Nunca se utilizó, eliminar definitivamente
+                    SqlCommand cmdEliminar = new SqlCommand(
+                        "DELETE FROM Flores WHERE idFlor=@id", cn); // Consulta para eliminar el producto de la tabla Flores
+
+                    cmdEliminar.Parameters.AddWithValue("@id", idFlor); // Agregar el parámetro @id con el valor del ID del producto a eliminar
+
+                    cmdEliminar.ExecuteNonQuery(); // Ejecutar la consulta SQL para eliminar el producto de la tabla Flores
+
+                    MessageBox.Show("Registro eliminado correctamente."); // Mostrar mensaje de éxito
+                }
+                else
+                {
+                    if (stock == 0) // Si tiene movimientos pero no tiene existencias, ocultar el producto
+                    {
+                        // Solo ocultarlo
+                        SqlCommand cmdOcultar = new SqlCommand("UPDATE Flores SET visible = 0 WHERE idFlor=@id", cn);
+
+                        cmdOcultar.Parameters.AddWithValue("@id", idFlor);// Agregar el parámetro @id con el valor del ID del producto a ocultar
+
+                        cmdOcultar.ExecuteNonQuery(); // Ejecutar la consulta SQL para ocultar el producto de la tabla Flores
+
+                        MessageBox.Show("El lote agotado fue eliminado correctamente.");
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede eliminar porque este lote tiene movimientos y aún tiene existencias.");
+                    }
+                }
+
+                cn.Close();
+
+                CargarProductos();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.Message);
             }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
 
-            dgvProductos.Rows.Clear();
+            dgvProductos.Rows.Clear(); //Se limpia el DataGridView antes de mostrar los resultados de la busqueda
 
             SqlConnection cn = Conexion.obtenerConexion(); //Se crea el objeto para la conexion
             cn.Open(); //Se abre la conexion
 
-            string query = "SELECT * FROM Flores WHERE nombre LIKE @nombre"; //Se crea la consulta para buscar el producto por nombre
+            string query = "SELECT * FROM Flores WHERE visible = 1 AND nombre LIKE @nombre"; //Se crea la consulta para buscar el producto por nombre
 
             SqlCommand cmd = new SqlCommand(query, cn); //Se crea el objeto para ejecutar la consulta
 

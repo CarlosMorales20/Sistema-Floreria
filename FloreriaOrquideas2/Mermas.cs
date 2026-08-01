@@ -22,8 +22,9 @@ namespace FloreriaOrquideas2
 
         private void Mermas_Load(object sender, EventArgs e)
         {
+            // Asignar el nombre de la flor al TextBox correspondiente
             txtFlor.Text = NombreFlor;
-            dtpFecha.Value = DateTime.Now;
+            dtpFecha.Value = DateTime.Now; // Fecha de hoy por defecto
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -35,21 +36,20 @@ namespace FloreriaOrquideas2
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            // 
+            // Comprobar que los campos no estén vacíos
             if (txtCantidad.Text == "" || txtMotivo.Text == "")
             {
                 MessageBox.Show("Complete todos los campos.");
                 return;
             }
 
-            int cantidadMerma = Convert.ToInt32(txtCantidad.Text);
+            int cantidadMerma = Convert.ToInt32(txtCantidad.Text);// Convertir la cantidad de merma a entero
 
             SqlConnection cn = Conexion.obtenerConexion();
             cn.Open();
 
             // Verificar stock total de la flor
-            SqlCommand cmdStock = new SqlCommand(
-                "SELECT SUM(stock) FROM Flores WHERE nombre=@nombre", cn);
+            SqlCommand cmdStock = new SqlCommand("SELECT SUM(stock) FROM Flores WHERE nombre=@nombre", cn);
 
             cmdStock.Parameters.AddWithValue("@nombre", txtFlor.Text);
 
@@ -63,20 +63,21 @@ namespace FloreriaOrquideas2
             }
 
             // Obtener los lotes ordenados por fecha (FIFO)
-            SqlCommand cmdLotes = new SqlCommand(
-                @"SELECT idFlor, stock
-          FROM Flores
-          WHERE nombre=@nombre AND stock>0
-          ORDER BY fechaIngreso ASC", cn);
+            // Se asume que la tabla Flores tiene un campo fechaIngreso para determinar el orden de los lotes
+            SqlCommand cmdLotes = new SqlCommand(@"SELECT idFlor, stock
+            FROM Flores
+            WHERE nombre=@nombre AND stock>0
+            ORDER BY fechaIngreso ASC", cn);
 
             cmdLotes.Parameters.AddWithValue("@nombre", txtFlor.Text);
 
-            SqlDataReader dr = cmdLotes.ExecuteReader();
+            SqlDataReader dr = cmdLotes.ExecuteReader();// Leer los lotes disponibles
 
-            List<(int idFlor, int stock)> lotes = new List<(int, int)>();
+            List<(int idFlor, int stock)> lotes = new List<(int, int)>();// Lista para almacenar los lotes disponibles
 
-            while (dr.Read())
+            while (dr.Read()) 
             {
+                // Agregar cada lote a la lista
                 lotes.Add((
                     Convert.ToInt32(dr["idFlor"]),
                     Convert.ToInt32(dr["stock"])
@@ -85,7 +86,7 @@ namespace FloreriaOrquideas2
 
             dr.Close();
 
-            int restante = cantidadMerma;
+            int restante = cantidadMerma;// Cantidad de merma que aún queda por descontar
 
             foreach (var lote in lotes)
             {
@@ -94,37 +95,35 @@ namespace FloreriaOrquideas2
 
                 int descontar = Math.Min(restante, lote.stock);
 
-                // Actualizar stock del lote
-                SqlCommand cmdActualizar = new SqlCommand(
-                    @"UPDATE Flores
-              SET stock = stock - @cantidad
-              WHERE idFlor = @idFlor", cn);
+                // Actualizar el stock del lote
+                SqlCommand cmdActualizar = new SqlCommand(@"UPDATE Flores
+                SET stock = stock - @cantidad
+                WHERE idFlor = @idFlor", cn);
 
                 cmdActualizar.Parameters.AddWithValue("@cantidad", descontar);
                 cmdActualizar.Parameters.AddWithValue("@idFlor", lote.idFlor);
 
-                cmdActualizar.ExecuteNonQuery();
+                cmdActualizar.ExecuteNonQuery();// Ejecutar la actualización del stock
 
                 // Registrar la merma
-                SqlCommand cmdMerma = new SqlCommand(
-                    @"INSERT INTO Mermas(idFlor,cantidad,motivo,fecha)
-              VALUES(@idFlor,@cantidad,@motivo,@fecha)", cn);
-
+                SqlCommand cmdMerma = new SqlCommand(@"INSERT INTO Mermas(idFlor,cantidad,motivo,fecha)
+                VALUES(@idFlor,@cantidad,@motivo,@fecha)", cn);
+                // Agregar los parámetros para registrar la merma
                 cmdMerma.Parameters.AddWithValue("@idFlor", lote.idFlor);
                 cmdMerma.Parameters.AddWithValue("@cantidad", descontar);
                 cmdMerma.Parameters.AddWithValue("@motivo", txtMotivo.Text);
                 cmdMerma.Parameters.AddWithValue("@fecha", dtpFecha.Value);
 
-                cmdMerma.ExecuteNonQuery();
+                cmdMerma.ExecuteNonQuery();// Ejecutar el registro de la merma
 
-                restante -= descontar;
+                restante -= descontar;// Actualizar la cantidad restante de merma por descontar
             }
 
-            cn.Close();
+            cn.Close();// Cerrar la conexión a la base de datos
 
             MessageBox.Show("Merma registrada correctamente.");
 
-            this.Close();
+            this.Close();// Cerrar el formulario de merma
         }
 
         private void panel3_Paint(object sender, PaintEventArgs e)
