@@ -25,7 +25,7 @@ namespace FloreriaOrquideas2
         {
             cmbFlor.Items.Clear();
 
-            SqlConnection cn = Conexion.obtenerConexion();
+            SqlConnection cn = Conexion.obtenerConexion(); 
             cn.Open();
 
             SqlCommand cmd = new SqlCommand("SELECT DISTINCT nombre FROM Flores ORDER BY nombre", cn);
@@ -443,7 +443,9 @@ ORDER BY fechaIngreso ASC", cn, trans);
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            MenuPrincipal menu = new MenuPrincipal();
+            menu.Show();
+            this.Hide();
         }
     }
 }

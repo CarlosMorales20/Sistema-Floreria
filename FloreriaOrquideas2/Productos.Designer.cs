@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Productos));
             panelSuperior = new Panel();
             btnSalir = new Button();
             btnEliminar = new Button();
@@ -76,6 +77,7 @@
             // 
             // panelSuperior
             // 
+            panelSuperior.BackColor = Color.MistyRose;
             panelSuperior.Controls.Add(btnSalir);
             panelSuperior.Controls.Add(btnEliminar);
             panelSuperior.Controls.Add(btnGuardar);
@@ -87,27 +89,29 @@
             panelSuperior.Location = new Point(0, 0);
             panelSuperior.Margin = new Padding(3, 4, 3, 4);
             panelSuperior.Name = "panelSuperior";
-            panelSuperior.Size = new Size(880, 119);
+            panelSuperior.Size = new Size(853, 119);
             panelSuperior.TabIndex = 0;
             // 
             // btnSalir
             // 
-            btnSalir.Location = new Point(767, 37);
+            btnSalir.BackColor = Color.FromArgb(255, 61, 65);
+            btnSalir.ForeColor = Color.White;
+            btnSalir.Location = new Point(731, 60);
             btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(75, 40);
+            btnSalir.Size = new Size(95, 41);
             btnSalir.TabIndex = 6;
             btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
+            btnSalir.UseVisualStyleBackColor = false;
             btnSalir.Click += button1_Click;
             // 
             // btnEliminar
             // 
-            btnEliminar.BackColor = Color.IndianRed;
+            btnEliminar.BackColor = Color.Orange;
             btnEliminar.FlatStyle = FlatStyle.Flat;
             btnEliminar.ForeColor = Color.White;
-            btnEliminar.Location = new Point(670, 37);
+            btnEliminar.Location = new Point(731, 13);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(86, 40);
+            btnEliminar.Size = new Size(96, 40);
             btnEliminar.TabIndex = 5;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
@@ -115,12 +119,12 @@
             // 
             // btnGuardar
             // 
-            btnGuardar.BackColor = Color.RoyalBlue;
+            btnGuardar.BackColor = Color.FromArgb(107, 144, 102);
             btnGuardar.FlatStyle = FlatStyle.Flat;
             btnGuardar.ForeColor = Color.White;
-            btnGuardar.Location = new Point(564, 37);
+            btnGuardar.Location = new Point(607, 13);
             btnGuardar.Name = "btnGuardar";
-            btnGuardar.Size = new Size(86, 40);
+            btnGuardar.Size = new Size(95, 40);
             btnGuardar.TabIndex = 4;
             btnGuardar.Text = "Guardar";
             btnGuardar.UseVisualStyleBackColor = false;
@@ -128,10 +132,10 @@
             // 
             // btnNuevo
             // 
-            btnNuevo.BackColor = Color.ForestGreen;
+            btnNuevo.BackColor = Color.FromArgb(161, 63, 73);
             btnNuevo.FlatStyle = FlatStyle.Flat;
             btnNuevo.ForeColor = Color.White;
-            btnNuevo.Location = new Point(451, 37);
+            btnNuevo.Location = new Point(492, 13);
             btnNuevo.Margin = new Padding(3, 4, 3, 4);
             btnNuevo.Name = "btnNuevo";
             btnNuevo.Size = new Size(86, 40);
@@ -162,10 +166,12 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(3, 4);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(117, 110);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -387,8 +393,9 @@
             dgvProductos.Location = new Point(12, 372);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
+            dgvProductos.RowHeadersVisible = false;
             dgvProductos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvProductos.Size = new Size(845, 342);
+            dgvProductos.Size = new Size(830, 342);
             dgvProductos.TabIndex = 5;
             dgvProductos.CellContentClick += dgvProductos_CellContentClick;
             // 
@@ -438,13 +445,13 @@
             // 
             // FechaIngreso
             // 
-            FechaIngreso.HeaderText = "FechaIngreso";
+            FechaIngreso.HeaderText = "Fecha Ingreso";
             FechaIngreso.Name = "FechaIngreso";
             FechaIngreso.ReadOnly = true;
             // 
             // FechaCaducidad
             // 
-            FechaCaducidad.HeaderText = "FechaCaducidad";
+            FechaCaducidad.HeaderText = "Fecha Caducidad";
             FechaCaducidad.Name = "FechaCaducidad";
             FechaCaducidad.ReadOnly = true;
             // 
@@ -453,7 +460,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(880, 749);
+            ClientSize = new Size(853, 749);
             Controls.Add(dgvProductos);
             Controls.Add(btnBuscar);
             Controls.Add(txtBuscar);
@@ -508,6 +515,8 @@
         private DateTimePicker dtpIngreso;
         private Label label12;
         private Label label11;
+        private DateTimePicker dtpCaducidad;
+        private Button btnSalir;
         private DataGridViewTextBoxColumn ID;
         private DataGridViewTextBoxColumn Nombre;
         private DataGridViewTextBoxColumn Categoria;
@@ -517,7 +526,5 @@
         private DataGridViewTextBoxColumn Unidad;
         private DataGridViewTextBoxColumn FechaIngreso;
         private DataGridViewTextBoxColumn FechaCaducidad;
-        private DateTimePicker dtpCaducidad;
-        private Button btnSalir;
     }
 }

@@ -28,13 +28,14 @@ namespace FloreriaOrquideas2
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Inventario Inv = new Inventario();
-            Inv.Show();
-            this.Hide();
+            txtMotivo.Clear();
+            txtCantidad.Clear();
+            dtpFecha.Value = DateTime.Now;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            // 
             if (txtCantidad.Text == "" || txtMotivo.Text == "")
             {
                 MessageBox.Show("Complete todos los campos.");
@@ -123,6 +124,23 @@ namespace FloreriaOrquideas2
 
             MessageBox.Show("Merma registrada correctamente.");
 
+            this.Close();
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void botonsalir_Click(object sender, EventArgs e)
+        {
+            Inventario inv = new Inventario();
+            inv.Show();
             this.Close();
         }
     }

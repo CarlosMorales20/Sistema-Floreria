@@ -31,13 +31,13 @@ namespace FloreriaOrquideas2
         {
             if (cmbReporte.SelectedItem == null)
             {
-                MessageBox.Show("Seleccione un tipo de reporte.");
+                MessageBox.Show("Seleccione un tipo de reporte."); //
                 return;
             }
 
             string tipo = cmbReporte.SelectedItem.ToString();
 
-            switch (tipo)
+            switch (tipo) //Switch para mandar a llamar el tipo de reporte 
             {
                 case "Venta":
                     ExportarVentas();

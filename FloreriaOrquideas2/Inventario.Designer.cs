@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             panelSuperior = new Panel();
+            btnSalir = new Button();
             button1 = new Button();
             btnActualizar = new Button();
             label2 = new Label();
@@ -41,7 +42,6 @@
             Existencias = new DataGridViewTextBoxColumn();
             StockMinimo = new DataGridViewTextBoxColumn();
             Estado = new DataGridViewTextBoxColumn();
-            btnSalir = new Button();
             panelSuperior.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvInventario).BeginInit();
@@ -50,6 +50,7 @@
             // panelSuperior
             // 
             panelSuperior.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            panelSuperior.BackColor = Color.MistyRose;
             panelSuperior.Controls.Add(btnSalir);
             panelSuperior.Controls.Add(button1);
             panelSuperior.Controls.Add(btnActualizar);
@@ -62,24 +63,46 @@
             panelSuperior.Size = new Size(644, 100);
             panelSuperior.TabIndex = 0;
             // 
+            // btnSalir
+            // 
+            btnSalir.BackColor = Color.FromArgb(125, 169, 216);
+            btnSalir.FlatStyle = FlatStyle.Flat;
+            btnSalir.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnSalir.ForeColor = Color.White;
+            btnSalir.Location = new Point(572, 12);
+            btnSalir.Name = "btnSalir";
+            btnSalir.Size = new Size(60, 28);
+            btnSalir.TabIndex = 6;
+            btnSalir.Text = "Salir";
+            btnSalir.UseVisualStyleBackColor = false;
+            btnSalir.Click += btnSalir_Click;
+            // 
             // button1
             // 
-            button1.Location = new Point(512, 26);
+            button1.BackColor = Color.FromArgb(240, 90, 118);
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(433, 12);
             button1.Name = "button1";
-            button1.Size = new Size(111, 23);
+            button1.Size = new Size(118, 28);
             button1.TabIndex = 5;
             button1.Text = "Registrar Merma";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // btnActualizar
             // 
-            btnActualizar.Location = new Point(395, 26);
+            btnActualizar.BackColor = Color.FromArgb(89, 177, 139);
+            btnActualizar.FlatStyle = FlatStyle.Flat;
+            btnActualizar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnActualizar.ForeColor = Color.White;
+            btnActualizar.Location = new Point(333, 12);
             btnActualizar.Name = "btnActualizar";
-            btnActualizar.Size = new Size(75, 23);
+            btnActualizar.Size = new Size(75, 28);
             btnActualizar.TabIndex = 3;
             btnActualizar.Text = "Actualizar";
-            btnActualizar.UseVisualStyleBackColor = true;
+            btnActualizar.UseVisualStyleBackColor = false;
             btnActualizar.Click += btnActualizar_Click;
             // 
             // label2
@@ -104,6 +127,7 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = Properties.Resources.Inventario100px;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(100, 97);
@@ -113,18 +137,19 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label9.Location = new Point(12, 124);
+            label9.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label9.Location = new Point(64, 116);
             label9.Name = "label9";
-            label9.Size = new Size(49, 17);
+            label9.Size = new Size(52, 17);
             label9.TabIndex = 2;
             label9.Text = "Buscar:";
             // 
             // txtBuscar
             // 
-            txtBuscar.Location = new Point(67, 123);
+            txtBuscar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtBuscar.Location = new Point(122, 114);
             txtBuscar.Name = "txtBuscar";
-            txtBuscar.Size = new Size(317, 23);
+            txtBuscar.Size = new Size(448, 25);
             txtBuscar.TabIndex = 3;
             txtBuscar.TextChanged += txtBuscar_TextChanged;
             // 
@@ -132,9 +157,10 @@
             // 
             dgvInventario.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvInventario.Columns.AddRange(new DataGridViewColumn[] { Flor, Existencias, StockMinimo, Estado });
-            dgvInventario.Location = new Point(30, 152);
+            dgvInventario.Location = new Point(67, 152);
             dgvInventario.Name = "dgvInventario";
-            dgvInventario.Size = new Size(593, 150);
+            dgvInventario.RowHeadersVisible = false;
+            dgvInventario.Size = new Size(503, 150);
             dgvInventario.TabIndex = 4;
             dgvInventario.CellContentClick += dgvInventario_CellContentClick;
             dgvInventario.CellMouseClick += dgvInventario_CellMouseClick;
@@ -143,7 +169,7 @@
             // 
             Flor.HeaderText = "Flor";
             Flor.Name = "Flor";
-            Flor.Width = 200;
+            Flor.Width = 150;
             // 
             // Existencias
             // 
@@ -161,21 +187,11 @@
             Estado.HeaderText = "Estado";
             Estado.Name = "Estado";
             // 
-            // btnSalir
-            // 
-            btnSalir.Location = new Point(578, 62);
-            btnSalir.Name = "btnSalir";
-            btnSalir.Size = new Size(45, 23);
-            btnSalir.TabIndex = 6;
-            btnSalir.Text = "Salir";
-            btnSalir.UseVisualStyleBackColor = true;
-            btnSalir.Click += btnSalir_Click;
-            // 
             // Inventario
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(644, 325);
+            ClientSize = new Size(644, 319);
             Controls.Add(dgvInventario);
             Controls.Add(txtBuscar);
             Controls.Add(label9);
@@ -203,10 +219,10 @@
         private Label label9;
         private TextBox txtBuscar;
         private DataGridView dgvInventario;
+        private Button btnSalir;
         private DataGridViewTextBoxColumn Flor;
         private DataGridViewTextBoxColumn Existencias;
         private DataGridViewTextBoxColumn StockMinimo;
         private DataGridViewTextBoxColumn Estado;
-        private Button btnSalir;
     }
 }

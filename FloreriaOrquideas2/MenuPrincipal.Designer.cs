@@ -28,139 +28,157 @@
         /// </summary>
         private void InitializeComponent()
         {
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panelMenu = new Panel();
-            button6 = new Button();
-            button5 = new Button();
-            button4 = new Button();
-            btnVentas1 = new Button();
-            btnProductos = new Button();
-            button1 = new Button();
+            BtnSalir = new Guna.UI2.WinForms.Guna2Button();
+            btnReportes = new Guna.UI2.WinForms.Guna2Button();
+            btnInventario = new Guna.UI2.WinForms.Guna2Button();
+            btnVentas = new Guna.UI2.WinForms.Guna2Button();
+            btnProductos = new Guna.UI2.WinForms.Guna2Button();
             panelSuperior = new Panel();
             label2 = new Label();
             label1 = new Label();
-            panelProductos = new Panel();
-            label4 = new Label();
-            label3 = new Label();
-            pictureBox1 = new PictureBox();
-            button8 = new Button();
-            panelVentas = new Panel();
-            pictureBox3 = new PictureBox();
-            panelInventario = new Panel();
-            pictureBox2 = new PictureBox();
-            panelReportes = new Panel();
-            pictureBox4 = new PictureBox();
+            pnlCaducidad = new Panel();
+            lblCaducidad = new Label();
+            panel1 = new Panel();
             panelMenu.SuspendLayout();
             panelSuperior.SuspendLayout();
-            panelProductos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panelVentas.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            panelInventario.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            panelReportes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            pnlCaducidad.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
             // 
             panelMenu.BackColor = Color.WhiteSmoke;
-            panelMenu.Controls.Add(button6);
-            panelMenu.Controls.Add(button5);
-            panelMenu.Controls.Add(button4);
-            panelMenu.Controls.Add(btnVentas1);
+            panelMenu.Controls.Add(BtnSalir);
+            panelMenu.Controls.Add(btnReportes);
+            panelMenu.Controls.Add(btnInventario);
+            panelMenu.Controls.Add(btnVentas);
             panelMenu.Controls.Add(btnProductos);
-            panelMenu.Controls.Add(button1);
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(200, 531);
             panelMenu.TabIndex = 0;
             // 
-            // button6
+            // BtnSalir
             // 
-            button6.BackColor = Color.MediumSeaGreen;
-            button6.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button6.Location = new Point(-3, 446);
-            button6.Name = "button6";
-            button6.Size = new Size(200, 70);
-            button6.TabIndex = 5;
-            button6.Text = "⎋ Salir";
-            button6.UseVisualStyleBackColor = false;
+            BtnSalir.BorderRadius = 20;
+            BtnSalir.CustomizableEdges = customizableEdges1;
+            BtnSalir.DisabledState.BorderColor = Color.DarkGray;
+            BtnSalir.DisabledState.CustomBorderColor = Color.DarkGray;
+            BtnSalir.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            BtnSalir.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            BtnSalir.FillColor = Color.FromArgb(250, 118, 118);
+            BtnSalir.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            BtnSalir.ForeColor = Color.Black;
+            BtnSalir.Location = new Point(3, 390);
+            BtnSalir.Name = "BtnSalir";
+            BtnSalir.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            BtnSalir.Size = new Size(194, 60);
+            BtnSalir.TabIndex = 9;
+            BtnSalir.Text = "🚪 SALIR";
+            BtnSalir.Click += BtnSalir_Click;
             // 
-            // button5
+            // btnReportes
             // 
-            button5.BackColor = Color.MediumSeaGreen;
-            button5.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button5.Location = new Point(-3, 381);
-            button5.Name = "button5";
-            button5.Size = new Size(200, 70);
-            button5.TabIndex = 4;
-            button5.Text = "▤ Reportes";
-            button5.UseVisualStyleBackColor = false;
-            button5.Click += button5_Click;
+            btnReportes.BorderRadius = 20;
+            btnReportes.CustomizableEdges = customizableEdges3;
+            btnReportes.DisabledState.BorderColor = Color.DarkGray;
+            btnReportes.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnReportes.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnReportes.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnReportes.FillColor = Color.FromArgb(232, 180, 244);
+            btnReportes.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReportes.ForeColor = Color.Black;
+            btnReportes.Location = new Point(3, 324);
+            btnReportes.Name = "btnReportes";
+            btnReportes.ShadowDecoration.CustomizableEdges = customizableEdges4;
+            btnReportes.Size = new Size(194, 60);
+            btnReportes.TabIndex = 8;
+            btnReportes.Text = "📄 REPORTES";
+            btnReportes.Click += btnReportes_Click;
             // 
-            // button4
+            // btnInventario
             // 
-            button4.BackColor = Color.MediumSeaGreen;
-            button4.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button4.Location = new Point(-3, 314);
-            button4.Name = "button4";
-            button4.Size = new Size(200, 70);
-            button4.TabIndex = 3;
-            button4.Text = "▣ Inventario\n";
-            button4.UseVisualStyleBackColor = false;
-            button4.Click += button4_Click;
+            btnInventario.BorderRadius = 20;
+            btnInventario.CustomizableEdges = customizableEdges5;
+            btnInventario.DisabledState.BorderColor = Color.DarkGray;
+            btnInventario.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnInventario.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnInventario.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnInventario.FillColor = Color.FromArgb(201, 217, 239);
+            btnInventario.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnInventario.ForeColor = Color.Black;
+            btnInventario.Location = new Point(3, 258);
+            btnInventario.Name = "btnInventario";
+            btnInventario.ShadowDecoration.CustomizableEdges = customizableEdges6;
+            btnInventario.Size = new Size(194, 60);
+            btnInventario.TabIndex = 7;
+            btnInventario.Text = "📦 INVENTARIO";
+            btnInventario.Click += btnInventario_Click;
             // 
-            // btnVentas1
+            // btnVentas
             // 
-            btnVentas1.BackColor = Color.MediumSeaGreen;
-            btnVentas1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnVentas1.Location = new Point(-3, 249);
-            btnVentas1.Name = "btnVentas1";
-            btnVentas1.Size = new Size(200, 70);
-            btnVentas1.TabIndex = 2;
-            btnVentas1.Text = "\U0001f6d2 Ventas";
-            btnVentas1.UseVisualStyleBackColor = false;
-            btnVentas1.Click += button3_Click;
+            btnVentas.BorderRadius = 20;
+            btnVentas.CustomizableEdges = customizableEdges7;
+            btnVentas.DisabledState.BorderColor = Color.DarkGray;
+            btnVentas.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnVentas.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnVentas.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnVentas.FillColor = Color.FromArgb(89, 177, 139);
+            btnVentas.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVentas.ForeColor = Color.Black;
+            btnVentas.Location = new Point(3, 192);
+            btnVentas.Name = "btnVentas";
+            btnVentas.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            btnVentas.Size = new Size(194, 60);
+            btnVentas.TabIndex = 6;
+            btnVentas.Text = "\U0001f6d2 VENTAS";
+            btnVentas.Click += btnVentas_Click;
             // 
             // btnProductos
             // 
-            btnProductos.BackColor = Color.MediumSeaGreen;
+            btnProductos.BorderRadius = 20;
+            btnProductos.CustomizableEdges = customizableEdges9;
+            btnProductos.DisabledState.BorderColor = Color.DarkGray;
+            btnProductos.DisabledState.CustomBorderColor = Color.DarkGray;
+            btnProductos.DisabledState.FillColor = Color.FromArgb(169, 169, 169);
+            btnProductos.DisabledState.ForeColor = Color.FromArgb(141, 141, 141);
+            btnProductos.FillColor = Color.FromArgb(225, 137, 152);
             btnProductos.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnProductos.Location = new Point(-3, 183);
+            btnProductos.ForeColor = Color.Black;
+            btnProductos.Location = new Point(3, 126);
             btnProductos.Name = "btnProductos";
-            btnProductos.Size = new Size(200, 70);
-            btnProductos.TabIndex = 1;
-            btnProductos.Text = "✿ Productos";
-            btnProductos.UseVisualStyleBackColor = false;
-            btnProductos.Click += btnProductos_Click;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.SeaGreen;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.Location = new Point(-3, 117);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 70);
-            button1.TabIndex = 0;
-            button1.Text = "⌂ Inicio";
-            button1.UseVisualStyleBackColor = false;
+            btnProductos.ShadowDecoration.CustomizableEdges = customizableEdges10;
+            btnProductos.Size = new Size(194, 60);
+            btnProductos.TabIndex = 2;
+            btnProductos.Text = "🌷 PRODUCTOS";
+            btnProductos.Click += guna2Button1_Click;
             // 
             // panelSuperior
             // 
+            panelSuperior.BackColor = Color.MistyRose;
             panelSuperior.Controls.Add(label2);
             panelSuperior.Controls.Add(label1);
             panelSuperior.Dock = DockStyle.Top;
             panelSuperior.Location = new Point(0, 0);
             panelSuperior.Name = "panelSuperior";
-            panelSuperior.Size = new Size(817, 120);
+            panelSuperior.Size = new Size(807, 120);
             panelSuperior.TabIndex = 1;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(202, 73);
+            label2.Location = new Point(254, 73);
             label2.Name = "label2";
             label2.Size = new Size(284, 25);
             label2.TabIndex = 1;
@@ -170,166 +188,77 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.ForestGreen;
-            label1.Location = new Point(203, 9);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(255, 9);
             label1.Name = "label1";
             label1.Size = new Size(283, 49);
             label1.TabIndex = 0;
             label1.Text = "ORQUIDEAS";
             // 
-            // panelProductos
+            // pnlCaducidad
             // 
-            panelProductos.BackColor = Color.MistyRose;
-            panelProductos.Controls.Add(label4);
-            panelProductos.Controls.Add(label3);
-            panelProductos.Controls.Add(pictureBox1);
-            panelProductos.Controls.Add(button8);
-            panelProductos.Location = new Point(203, 126);
-            panelProductos.Name = "panelProductos";
-            panelProductos.Size = new Size(300, 150);
-            panelProductos.TabIndex = 2;
+            pnlCaducidad.BackColor = Color.White;
+            pnlCaducidad.BorderStyle = BorderStyle.FixedSingle;
+            pnlCaducidad.Controls.Add(lblCaducidad);
+            pnlCaducidad.Location = new Point(206, 324);
+            pnlCaducidad.Name = "pnlCaducidad";
+            pnlCaducidad.Size = new Size(599, 135);
+            pnlCaducidad.TabIndex = 4;
+            pnlCaducidad.Visible = false;
+            pnlCaducidad.Paint += pnlCaducidad_Paint;
             // 
-            // label4
+            // lblCaducidad
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(116, 88);
-            label4.Name = "label4";
-            label4.Size = new Size(167, 15);
-            label4.TabIndex = 3;
-            label4.Text = "Administrar flores y productos";
+            lblCaducidad.AutoSize = true;
+            lblCaducidad.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblCaducidad.Location = new Point(73, 32);
+            lblCaducidad.Name = "lblCaducidad";
+            lblCaducidad.Size = new Size(0, 32);
+            lblCaducidad.TabIndex = 0;
             // 
-            // label3
+            // panel1
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(129, 41);
-            label3.Name = "label3";
-            label3.Size = new Size(104, 25);
-            label3.TabIndex = 2;
-            label3.Text = "Productos";
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Location = new Point(20, 30);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(80, 80);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
-            // button8
-            // 
-            button8.BackColor = Color.Transparent;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatAppearance.MouseDownBackColor = Color.FromArgb(0, 0, 0, 0);
-            button8.FlatAppearance.MouseOverBackColor = Color.FromArgb(0, 0, 0, 0);
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.Location = new Point(3, 9);
-            button8.Name = "button8";
-            button8.Size = new Size(294, 124);
-            button8.TabIndex = 1;
-            button8.UseVisualStyleBackColor = false;
-            button8.Click += button8_Click;
-            // 
-            // panelVentas
-            // 
-            panelVentas.Controls.Add(pictureBox3);
-            panelVentas.Location = new Point(509, 126);
-            panelVentas.Name = "panelVentas";
-            panelVentas.Size = new Size(300, 150);
-            panelVentas.TabIndex = 3;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Location = new Point(22, 30);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(80, 80);
-            pictureBox3.TabIndex = 0;
-            pictureBox3.TabStop = false;
-            // 
-            // panelInventario
-            // 
-            panelInventario.Controls.Add(pictureBox2);
-            panelInventario.Location = new Point(203, 282);
-            panelInventario.Name = "panelInventario";
-            panelInventario.Size = new Size(300, 150);
-            panelInventario.TabIndex = 4;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Location = new Point(20, 32);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(80, 80);
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
-            // 
-            // panelReportes
-            // 
-            panelReportes.Controls.Add(pictureBox4);
-            panelReportes.Location = new Point(509, 282);
-            panelReportes.Name = "panelReportes";
-            panelReportes.Size = new Size(300, 150);
-            panelReportes.TabIndex = 5;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Location = new Point(22, 32);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(80, 80);
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
+            panel1.BackColor = Color.White;
+            panel1.Location = new Point(206, 139);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(599, 166);
+            panel1.TabIndex = 5;
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(817, 514);
-            Controls.Add(panelReportes);
-            Controls.Add(panelInventario);
-            Controls.Add(panelVentas);
-            Controls.Add(panelProductos);
+            ClientSize = new Size(807, 469);
+            Controls.Add(panel1);
+            Controls.Add(pnlCaducidad);
             Controls.Add(panelSuperior);
             Controls.Add(panelMenu);
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuPrincipal";
+            Load += MenuPrincipal_Load;
             panelMenu.ResumeLayout(false);
             panelSuperior.ResumeLayout(false);
             panelSuperior.PerformLayout();
-            panelProductos.ResumeLayout(false);
-            panelProductos.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panelVentas.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            panelInventario.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            panelReportes.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            pnlCaducidad.ResumeLayout(false);
+            pnlCaducidad.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panelMenu;
-        private Button button6;
-        private Button button5;
-        private Button button4;
-        private Button btnVentas1;
-        private Button btnProductos;
-        private Button button1;
+  
         private Panel panelSuperior;
         private Label label2;
         private Label label1;
-        private Panel panelProductos;
-        private Panel panelVentas;
-        private Panel panelInventario;
-        private Panel panelReportes;
-        private PictureBox pictureBox1;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox2;
-        private PictureBox pictureBox4;
-        private Button button8;
-        private Label label4;
-        private Label label3;
+        private Panel pnlCaducidad;
+        private Label lblCaducidad;
+        private Guna.UI2.WinForms.Guna2Button btnProductos;
+        private Guna.UI2.WinForms.Guna2Button btnVentas;
+        private Guna.UI2.WinForms.Guna2Button btnInventario;
+        private Guna.UI2.WinForms.Guna2Button btnReportes;
+        private Guna.UI2.WinForms.Guna2Button BtnSalir;
+        private Panel panel1;
     }
 }

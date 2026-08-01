@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ventas));
             panelSuperior = new Panel();
             btnCancelar = new Button();
             btnGuardarVenta = new Button();
@@ -86,6 +87,7 @@
             // 
             // panelSuperior
             // 
+            panelSuperior.BackColor = Color.MistyRose;
             panelSuperior.Controls.Add(btnCancelar);
             panelSuperior.Controls.Add(btnGuardarVenta);
             panelSuperior.Controls.Add(btnNuevaVenta);
@@ -95,18 +97,18 @@
             panelSuperior.Dock = DockStyle.Top;
             panelSuperior.Location = new Point(0, 0);
             panelSuperior.Name = "panelSuperior";
-            panelSuperior.Size = new Size(755, 101);
+            panelSuperior.Size = new Size(624, 101);
             panelSuperior.TabIndex = 0;
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = Color.Red;
+            btnCancelar.BackColor = Color.FromArgb(255, 141, 40);
             btnCancelar.FlatStyle = FlatStyle.Flat;
             btnCancelar.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancelar.ForeColor = SystemColors.ButtonHighlight;
-            btnCancelar.Location = new Point(544, 37);
+            btnCancelar.Location = new Point(505, 21);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(108, 29);
+            btnCancelar.Size = new Size(108, 36);
             btnCancelar.TabIndex = 5;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = false;
@@ -114,13 +116,13 @@
             // 
             // btnGuardarVenta
             // 
-            btnGuardarVenta.BackColor = Color.RoyalBlue;
+            btnGuardarVenta.BackColor = Color.FromArgb(107, 144, 102);
             btnGuardarVenta.FlatStyle = FlatStyle.Flat;
             btnGuardarVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnGuardarVenta.ForeColor = SystemColors.Control;
-            btnGuardarVenta.Location = new Point(420, 37);
+            btnGuardarVenta.Location = new Point(391, 21);
             btnGuardarVenta.Name = "btnGuardarVenta";
-            btnGuardarVenta.Size = new Size(108, 29);
+            btnGuardarVenta.Size = new Size(108, 36);
             btnGuardarVenta.TabIndex = 4;
             btnGuardarVenta.Text = "Guardar Venta";
             btnGuardarVenta.UseVisualStyleBackColor = false;
@@ -128,13 +130,13 @@
             // 
             // btnNuevaVenta
             // 
-            btnNuevaVenta.BackColor = Color.ForestGreen;
+            btnNuevaVenta.BackColor = Color.FromArgb(161, 63, 73);
             btnNuevaVenta.FlatStyle = FlatStyle.Flat;
             btnNuevaVenta.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnNuevaVenta.ForeColor = Color.White;
-            btnNuevaVenta.Location = new Point(301, 37);
+            btnNuevaVenta.Location = new Point(277, 21);
             btnNuevaVenta.Name = "btnNuevaVenta";
-            btnNuevaVenta.Size = new Size(108, 29);
+            btnNuevaVenta.Size = new Size(108, 36);
             btnNuevaVenta.TabIndex = 3;
             btnNuevaVenta.Text = "+ Nueva Venta";
             btnNuevaVenta.UseVisualStyleBackColor = false;
@@ -162,9 +164,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(3, 3);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(96, 95);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -310,7 +314,7 @@
             button1.BackColor = Color.Green;
             button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = SystemColors.HighlightText;
+            button1.ForeColor = Color.White;
             button1.Location = new Point(49, 117);
             button1.Name = "button1";
             button1.Size = new Size(92, 33);
@@ -363,8 +367,9 @@
             dgvVenta.Location = new Point(209, 288);
             dgvVenta.MultiSelect = false;
             dgvVenta.Name = "dgvVenta";
+            dgvVenta.RowHeadersVisible = false;
             dgvVenta.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvVenta.Size = new Size(443, 164);
+            dgvVenta.Size = new Size(403, 166);
             dgvVenta.TabIndex = 3;
             // 
             // Flor
@@ -441,14 +446,14 @@
             groupBox3.Controls.Add(txtEspecificaciones);
             groupBox3.Location = new Point(400, 110);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(252, 172);
+            groupBox3.Size = new Size(211, 145);
             groupBox3.TabIndex = 5;
             groupBox3.TabStop = false;
             groupBox3.Text = "Especificaciones de ramo";
             // 
             // txtEspecificaciones
             // 
-            txtEspecificaciones.Location = new Point(20, 29);
+            txtEspecificaciones.Location = new Point(3, 22);
             txtEspecificaciones.Multiline = true;
             txtEspecificaciones.Name = "txtEspecificaciones";
             txtEspecificaciones.Size = new Size(206, 116);
@@ -458,13 +463,13 @@
             // 
             btnEliminar.BackColor = Color.Red;
             btnEliminar.FlatStyle = FlatStyle.Flat;
-            btnEliminar.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnEliminar.ForeColor = SystemColors.ButtonHighlight;
-            btnEliminar.Location = new Point(658, 422);
+            btnEliminar.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEliminar.ForeColor = Color.White;
+            btnEliminar.Location = new Point(556, 458);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(90, 30);
+            btnEliminar.Size = new Size(55, 30);
             btnEliminar.TabIndex = 6;
-            btnEliminar.Text = "- Eliminar";
+            btnEliminar.Text = "-";
             btnEliminar.UseVisualStyleBackColor = false;
             btnEliminar.Click += btnEliminar_Click;
             // 
@@ -478,7 +483,7 @@
             groupBox4.Controls.Add(label13);
             groupBox4.Location = new Point(262, 458);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(324, 117);
+            groupBox4.Size = new Size(288, 117);
             groupBox4.TabIndex = 7;
             groupBox4.TabStop = false;
             groupBox4.Text = "Totales";
@@ -543,7 +548,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(755, 587);
+            ClientSize = new Size(624, 587);
             Controls.Add(groupBox4);
             Controls.Add(btnEliminar);
             Controls.Add(groupBox3);

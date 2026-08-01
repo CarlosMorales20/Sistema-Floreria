@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Reportes));
             panelSuperior = new Panel();
             label2 = new Label();
             label1 = new Label();
@@ -48,6 +49,7 @@
             // 
             // panelSuperior
             // 
+            panelSuperior.BackColor = Color.MistyRose;
             panelSuperior.Controls.Add(label2);
             panelSuperior.Controls.Add(label1);
             panelSuperior.Controls.Add(pictureBox1);
@@ -80,9 +82,11 @@
             // 
             // pictureBox1
             // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(84, 79);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -94,6 +98,7 @@
             Filtros.Controls.Add(label4);
             Filtros.Controls.Add(cmbReporte);
             Filtros.Controls.Add(label3);
+            Filtros.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Filtros.Location = new Point(0, 88);
             Filtros.Name = "Filtros";
             Filtros.Size = new Size(246, 187);
@@ -105,7 +110,7 @@
             // 
             dtpFin.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpFin.Format = DateTimePickerFormat.Short;
-            dtpFin.Location = new Point(95, 128);
+            dtpFin.Location = new Point(108, 126);
             dtpFin.Name = "dtpFin";
             dtpFin.Size = new Size(128, 25);
             dtpFin.TabIndex = 5;
@@ -114,7 +119,7 @@
             // 
             dtpInicio.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dtpInicio.Format = DateTimePickerFormat.Custom;
-            dtpInicio.Location = new Point(95, 86);
+            dtpInicio.Location = new Point(108, 84);
             dtpInicio.Name = "dtpInicio";
             dtpInicio.Size = new Size(128, 25);
             dtpInicio.TabIndex = 4;
@@ -122,22 +127,22 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label5.Location = new Point(11, 132);
             label5.Name = "label5";
-            label5.Size = new Size(62, 17);
+            label5.Size = new Size(84, 17);
             label5.TabIndex = 3;
-            label5.Text = "Fecha fin:";
+            label5.Text = "Fecha de fin:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.Location = new Point(11, 90);
             label4.Name = "label4";
-            label4.Size = new Size(78, 17);
+            label4.Size = new Size(100, 17);
             label4.TabIndex = 2;
-            label4.Text = "Fecha inicio:";
+            label4.Text = "Fecha de inicio:";
             // 
             // cmbReporte
             // 
@@ -145,26 +150,26 @@
             cmbReporte.Items.AddRange(new object[] { "Venta", "Inventario", "Mermas" });
             cmbReporte.Location = new Point(27, 50);
             cmbReporte.Name = "cmbReporte";
-            cmbReporte.Size = new Size(185, 23);
+            cmbReporte.Size = new Size(185, 25);
             cmbReporte.TabIndex = 1;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.Location = new Point(63, 30);
             label3.Name = "label3";
-            label3.Size = new Size(111, 17);
+            label3.Size = new Size(108, 17);
             label3.TabIndex = 0;
             label3.Text = "Tipo de Reporte:";
             // 
             // btnGenerarExcel
             // 
-            btnGenerarExcel.BackColor = Color.Orange;
+            btnGenerarExcel.BackColor = Color.FromArgb(89, 177, 139);
             btnGenerarExcel.FlatStyle = FlatStyle.Flat;
             btnGenerarExcel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnGenerarExcel.ForeColor = SystemColors.ButtonHighlight;
-            btnGenerarExcel.Location = new Point(293, 129);
+            btnGenerarExcel.Location = new Point(275, 131);
             btnGenerarExcel.Name = "btnGenerarExcel";
             btnGenerarExcel.Size = new Size(126, 32);
             btnGenerarExcel.TabIndex = 5;
@@ -174,12 +179,15 @@
             // 
             // button3
             // 
-            button3.Location = new Point(344, 178);
+            button3.BackColor = Color.Red;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.White;
+            button3.Location = new Point(353, 255);
             button3.Name = "button3";
-            button3.Size = new Size(75, 23);
+            button3.Size = new Size(88, 32);
             button3.TabIndex = 7;
             button3.Text = "Salir";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // Reportes

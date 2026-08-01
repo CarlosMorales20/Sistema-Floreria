@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -117,27 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        /9j/4AAQSkZJRgABAQEAAAAAAAD/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdA
-        SFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2Nj
-        Y2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wAARCABWAFQDASIAAhEBAxEB/8QA
-        GgABAQEBAQEBAAAAAAAAAAAAAAYEAQUHA//EADoQAAECAwMLAwEECwAAAAAAAAABAgMEBQYRcRIUFiEy
-        M1FUdJPRMUHBkhMVgbIiNTZCYXOCkaGx4f/EABcBAQEBAQAAAAAAAAAAAAAAAAABAgP/xAAcEQEBAAMA
-        AwEAAAAAAAAAAAAAAQIRMRJBUSH/2gAMAwEAAhEDEQA/ALIzVCflqbKPmZuJkQ2+916qvBE91NRK27ud
-        L0xjkva6bRFRffUZd7dQ09pt+qVnFTjkN8jT2m8rO/Q3yVOQ1q3NaiImpERPQXJwQfiav1LaeU3lZ36G
-        +Rp5TeVnPob5Km5OCf2M9RRPu2b9Ny/8qg1frPRq1J1qA6JKOcisW58N6XOb+HD+J6J85o9Lm4VDlq5S
-        HuzuGr0iwvVIrEXhh7fJaUOsy1akkjQFyYjdUWEq62L44KNGOW+vSABGgAACWtzu6X1aFSS1ud1S+rQs
-        Zy4qXbS4gO2lxBGoGao/q2b/AJD/AMqmk/KahfbysaDfcsSG5l/C9LgV4dhf2Xl9X779f9RnrdJmKbOL
-        W6Il0ZNcxLomqI33W7/afihmpslaylSTZOVhyKwWKqornIqret/E0pEtm1d1T78U8lc/WntUarS1YkUm
-        Zdbl9Hw1XWxeC+TefOokKs0GswKlHhy8HOoqMeyCqZD7/VFT/OJ9FX1W4VrG7AARoJa3O6pfVoVJLW53
-        VL6tCxnLipdtLicOu2lxOEajoAAHDoAlbdbul9WnwVTtpcSVt1u6X1afBVLtLiVmdoACNBLW63VL6tCp
-        Ja3W6pfVoWM5cVLtpcTh120uII1AAAAABK273VL6tPgqnbS4krbvdUvq0+CqXaXEvpmdoACNBLW63VL6
-        tCpJa3i5MrTort3Dm0VzuGr/AIpYzlxUrtLiDP8AeMi79Js7LK1daL9q3ycz+S5yW7rfJFljSDNn8nzk
-        t3m+TufyXOS/db5BuNAM2fyXOS3db5GfyXOS/db5BuJ63e7pfVp8FUu0uJH2zmpeadSoEtHhxoqzSLkw
-        3I5btSexYLrVcSpO0ABGg/GaloE5Lvl5mE2LCftNcmpQAPEWxVDvvzaJ3nDQqh8vF7zgC7TxhoVQ+Xi9
-        5w0KofLxO84AHjDQqh8vE7zhoVQ+Wid5wA2eMa6dZqlUyYSYlZa6Kmy57ldk4X+h6wBCTQAAr//Z
-</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="WhatsApp Image 2026-07-31 at 8.53.43 PM (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WhatsApp Image 2026-07-31 at 8.53.43 PM (1).jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Inventario100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Inventario100px.jpeg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
