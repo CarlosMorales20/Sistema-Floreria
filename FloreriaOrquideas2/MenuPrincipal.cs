@@ -103,6 +103,15 @@ namespace FloreriaOrquideas2
         private void MenuPrincipal_Load(object sender, EventArgs e)
         {
             VerificarCaducidad(); // Revisar automáticamente la caducidad de los lotes
+            // Establecer el título del resumen con el mes y año actual
+            lblTitulo.Text ="RESUMEN DE " + DateTime.Now.ToString("MMMM yyyy").ToUpper();
+
+            CargarIngresosMes(); // Cargar los ingresos del mes actual
+            CargarFloresVendidasMes(); // Cargar la cantidad de flores vendidas en el mes actual
+            CargarClientesMes(); // Cargar la cantidad de clientes que han realizado pedidos en el mes actual
+            CargarMermasMes(); // Cargar la cantidad de mermas en el mes actual
+            CargarFlorMasVendida(); // Cargar la flor más vendida en el mes actual
+            CargarExistencias(); // Cargar la cantidad de existencias de flores visibles
         }
 
         private void pnlCaducidad_Paint(object sender, PaintEventArgs e)
@@ -143,6 +152,100 @@ namespace FloreriaOrquideas2
             Reportes rep = new Reportes();
             rep.Show();
             this.Hide();
+        }
+
+
+        //MEEEEEEEEEEEEEEEEEEEEEEEEEES
+        private void CargarIngresosMes()// Cargar los ingresos del mes actual
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la suma de los ingresos del mes actual
+            string query = @"SELECT ISNULL(SUM(total),0)
+            FROM Ramos
+            WHERE MONTH(fechaPedido)=MONTH(GETDATE()) AND YEAR(fechaPedido)=YEAR(GETDATE())";
+
+            SqlCommand cmd = new SqlCommand(query, cn); // Crear un comando SQL con la consulta y la conexión
+            // Ejecutar el comando y obtener el resultado como un objeto
+            decimal total =
+            Convert.ToDecimal(cmd.ExecuteScalar());
+
+            lblingresos.Text = total.ToString("C"); // Mostrar el total en el label con formato de moneda
+            cn.Close();
+        }
+
+        private void CargarFloresVendidasMes()
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la suma de las flores vendidas en el mes actual
+            string query = @"SELECT ISNULL(SUM(cantidad),0)
+            FROM Ramos
+            WHERE MONTH(fechaPedido)=MONTH(GETDATE()) AND YEAR(fechaPedido)=YEAR(GETDATE())";
+            SqlCommand cmd = new SqlCommand(query, cn);// Crear un comando SQL con la consulta y la conexión
+            // Ejecutar el comando y obtener el resultado como un objeto
+            int total = Convert.ToInt32(cmd.ExecuteScalar());
+            lblFV.Text = total.ToString();
+            cn.Close();
+        }
+        private void CargarClientesMes()
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la cantidad de clientes distintos que han realizado pedidos en el mes actual
+            string query = @"SELECT COUNT(DISTINCT idCliente)
+            FROM Ramos
+            WHERE MONTH(fechaPedido)=MONTH(GETDATE()) AND YEAR(fechaPedido)=YEAR(GETDATE())";
+            SqlCommand cmd = new SqlCommand(query, cn);
+            // Ejecutar el comando y obtener el resultado como un objeto
+            int total = Convert.ToInt32(cmd.ExecuteScalar());
+            lblCA.Text = total.ToString();
+            cn.Close();
+        }
+        private void CargarMermasMes()
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la suma de las mermas en el mes actual
+            string query = @"SELECT ISNULL(SUM(cantidad),0)
+            FROM Mermas
+            WHERE MONTH(fecha)=MONTH(GETDATE()) AND YEAR(fecha)=YEAR(GETDATE())";
+            SqlCommand cmd = new SqlCommand(query, cn);
+            // Ejecutar el comando y obtener el resultado como un objeto
+            int total = Convert.ToInt32(cmd.ExecuteScalar());
+            lblMermas.Text = total.ToString();
+            cn.Close();
+        }
+        private void CargarFlorMasVendida()
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la flor más vendida en el mes actual
+            string query = @"SELECT TOP 1 F.nombre FROM Ramos R
+            INNER JOIN Flores F ON R.idFlor = F.idFlor
+            WHERE MONTH(R.fechaPedido)=MONTH(GETDATE()) AND YEAR(R.fechaPedido)=YEAR(GETDATE())
+            GROUP BY F.nombre ORDER BY SUM(R.cantidad) DESC";
+            SqlCommand cmd = new SqlCommand(query, cn); // Crear un comando SQL con la consulta y la conexión
+            // Ejecutar el comando y obtener el resultado como un objeto
+            object resultado = cmd.ExecuteScalar();
+            if (resultado != null)
+                lblFMV.Text = resultado.ToString();// Mostrar el nombre de la flor más vendida en el label
+            else
+                lblFMV.Text = "Sin ventas";// Si no hay ventas, mostrar "Sin ventas"
+            cn.Close();
+        }
+        private void CargarExistencias()
+        {
+            SqlConnection cn = Conexion.obtenerConexion();
+            cn.Open();
+            // Consulta SQL para obtener la suma de las existencias de flores visibles
+            string query = @"SELECT ISNULL(SUM(stock),0) FROM Flores
+            WHERE visible = 1";
+            SqlCommand cmd = new SqlCommand(query, cn);
+            // Ejecutar el comando y obtener el resultado como un objeto
+            int total = Convert.ToInt32(cmd.ExecuteScalar());
+            lblExistencias.Text = total.ToString();
+            cn.Close();
         }
     }
 }

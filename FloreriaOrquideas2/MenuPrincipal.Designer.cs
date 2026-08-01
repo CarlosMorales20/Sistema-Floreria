@@ -50,9 +50,23 @@
             pnlCaducidad = new Panel();
             lblCaducidad = new Label();
             panel1 = new Panel();
+            lblExistencias = new Label();
+            label9 = new Label();
+            lblFMV = new Label();
+            label8 = new Label();
+            lblMermas = new Label();
+            label7 = new Label();
+            lblCA = new Label();
+            label6 = new Label();
+            lblFV = new Label();
+            label5 = new Label();
+            lblingresos = new Label();
+            label4 = new Label();
+            lblTitulo = new Label();
             panelMenu.SuspendLayout();
             panelSuperior.SuspendLayout();
             pnlCaducidad.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -219,16 +233,154 @@
             // panel1
             // 
             panel1.BackColor = Color.White;
-            panel1.Location = new Point(206, 139);
+            panel1.Controls.Add(lblExistencias);
+            panel1.Controls.Add(label9);
+            panel1.Controls.Add(lblFMV);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(lblMermas);
+            panel1.Controls.Add(label7);
+            panel1.Controls.Add(lblCA);
+            panel1.Controls.Add(label6);
+            panel1.Controls.Add(lblFV);
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(lblingresos);
+            panel1.Controls.Add(label4);
+            panel1.Controls.Add(lblTitulo);
+            panel1.Location = new Point(206, 126);
             panel1.Name = "panel1";
-            panel1.Size = new Size(599, 166);
+            panel1.Size = new Size(599, 192);
             panel1.TabIndex = 5;
+            // 
+            // lblExistencias
+            // 
+            lblExistencias.AutoSize = true;
+            lblExistencias.Font = new Font("Segoe UI", 11.25F);
+            lblExistencias.Location = new Point(482, 147);
+            lblExistencias.Name = "lblExistencias";
+            lblExistencias.Size = new Size(17, 20);
+            lblExistencias.TabIndex = 12;
+            lblExistencias.Text = "0";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(460, 115);
+            label9.Name = "label9";
+            label9.Size = new Size(66, 15);
+            label9.TabIndex = 11;
+            label9.Text = "Existencias:";
+            // 
+            // lblFMV
+            // 
+            lblFMV.AutoSize = true;
+            lblFMV.Font = new Font("Segoe UI", 11.25F);
+            lblFMV.Location = new Point(460, 75);
+            lblFMV.Name = "lblFMV";
+            lblFMV.Size = new Size(69, 20);
+            lblFMV.TabIndex = 10;
+            lblFMV.Text = "----------";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(446, 45);
+            label8.Name = "label8";
+            label8.Size = new Size(100, 15);
+            label8.TabIndex = 9;
+            label8.Text = "Flor mas vendida:";
+            // 
+            // lblMermas
+            // 
+            lblMermas.AutoSize = true;
+            lblMermas.Font = new Font("Segoe UI", 11.25F);
+            lblMermas.Location = new Point(284, 147);
+            lblMermas.Name = "lblMermas";
+            lblMermas.Size = new Size(17, 20);
+            lblMermas.TabIndex = 8;
+            lblMermas.Text = "0";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(266, 115);
+            label7.Name = "label7";
+            label7.Size = new Size(53, 15);
+            label7.TabIndex = 7;
+            label7.Text = "Mermas:";
+            // 
+            // lblCA
+            // 
+            lblCA.AutoSize = true;
+            lblCA.Font = new Font("Segoe UI", 11.25F);
+            lblCA.Location = new Point(284, 75);
+            lblCA.Name = "lblCA";
+            lblCA.Size = new Size(17, 20);
+            lblCA.TabIndex = 6;
+            lblCA.Text = "0";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(243, 45);
+            label6.Name = "label6";
+            label6.Size = new Size(107, 15);
+            label6.TabIndex = 5;
+            label6.Text = "Clientes atendidos:";
+            // 
+            // lblFV
+            // 
+            lblFV.AutoSize = true;
+            lblFV.Font = new Font("Segoe UI", 11.25F);
+            lblFV.Location = new Point(68, 147);
+            lblFV.Name = "lblFV";
+            lblFV.Size = new Size(17, 20);
+            lblFV.TabIndex = 4;
+            lblFV.Text = "0";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(28, 115);
+            label5.Name = "label5";
+            label5.Size = new Size(91, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Flores vendidas:";
+            // 
+            // lblingresos
+            // 
+            lblingresos.AutoSize = true;
+            lblingresos.Font = new Font("Segoe UI", 11.25F);
+            lblingresos.Location = new Point(49, 75);
+            lblingresos.Name = "lblingresos";
+            lblingresos.Size = new Size(44, 20);
+            lblingresos.TabIndex = 2;
+            lblingresos.Text = "$0.00";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(48, 45);
+            label4.Name = "label4";
+            label4.Size = new Size(54, 15);
+            label4.TabIndex = 1;
+            label4.Text = "Ingresos:";
+            // 
+            // lblTitulo
+            // 
+            lblTitulo.Dock = DockStyle.Top;
+            lblTitulo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.Location = new Point(0, 0);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(599, 21);
+            lblTitulo.TabIndex = 0;
+            lblTitulo.Text = "Resumen del mes";
+            lblTitulo.TextAlign = ContentAlignment.TopCenter;
             // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(807, 469);
+            ClientSize = new Size(807, 461);
             Controls.Add(panel1);
             Controls.Add(pnlCaducidad);
             Controls.Add(panelSuperior);
@@ -242,6 +394,8 @@
             panelSuperior.PerformLayout();
             pnlCaducidad.ResumeLayout(false);
             pnlCaducidad.PerformLayout();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -260,5 +414,18 @@
         private Guna.UI2.WinForms.Guna2Button btnReportes;
         private Guna.UI2.WinForms.Guna2Button BtnSalir;
         private Panel panel1;
+        private Label label4;
+        private Label lblTitulo;
+        private Label lblFV;
+        private Label label5;
+        private Label lblingresos;
+        private Label lblMermas;
+        private Label label7;
+        private Label lblCA;
+        private Label label6;
+        private Label lblExistencias;
+        private Label label9;
+        private Label lblFMV;
+        private Label label8;
     }
 }
