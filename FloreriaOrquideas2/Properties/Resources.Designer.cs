@@ -73,6 +73,16 @@ namespace FloreriaOrquideas2.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap OrquideasRosa {
+            get {
+                object obj = ResourceManager.GetObject("OrquideasRosa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap WhatsApp_Image_2026_07_31_at_8_53_43_PM__1_ {
             get {
                 object obj = ResourceManager.GetObject("WhatsApp Image 2026-07-31 at 8.53.43 PM (1)", resourceCulture);
